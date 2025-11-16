@@ -6,7 +6,7 @@ public class Samochod {
     String model;
     double predkosc_max;
     SkrzyniaBiegow skrzynia;
-    Silnik silnik;
+    public Silnik silnik;
 
     void wlacz(){
         silnik.uruchom();
@@ -16,16 +16,21 @@ public class Samochod {
 
     }
 
-
     public Samochod(boolean stanWlaczenia,String nrRejstracji, String model, double predkosc_max){
         this.stanWlaczenia = stanWlaczenia;
         this.nrRejest = nrRejstracji;
         this.model = model;
         this.predkosc_max = predkosc_max;
         skrzynia = new SkrzyniaBiegow(1, 6);
-        silnik = new Silnik(7000, 200);
+        silnik = new Silnik(7000);
     }
-
-
+    public Samochod(String nrRejstracji, String model, double predkosc_max, int maxObroty, int iloscBiegow){
+        this.stanWlaczenia = false;
+        this.nrRejest = nrRejstracji;
+        this.model = model;
+        this.predkosc_max = predkosc_max;
+        skrzynia = new SkrzyniaBiegow(1, iloscBiegow);
+        silnik = new Silnik(maxObroty);
+    }
 
 }

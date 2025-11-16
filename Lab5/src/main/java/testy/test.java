@@ -13,5 +13,8 @@ public class test {
 
         Samochod samochod = new  Samochod(true, "cos", "cos", 160);
         samochod.wylacz();
+        samochod.silnik.zmniejszObroty();
+
+        Samochod auto = new Samochod("blachy", "model", 160,8000,5);
     }
 }

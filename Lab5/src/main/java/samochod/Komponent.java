@@ -4,6 +4,8 @@ public abstract class Komponent {
     String nazwa;
     double waga;
     double cena;
+
+
     String getNazwa(){
         return nazwa;
     }
