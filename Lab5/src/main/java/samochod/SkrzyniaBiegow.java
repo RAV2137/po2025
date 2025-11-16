@@ -12,17 +12,12 @@ public class SkrzyniaBiegow extends Komponent{
     }
 
     void zwiekszBieg(){
-        if(aktualnyBieg+1>=iloscBiegow){
-            return;
-        }
+        if(aktualnyBieg+1>=iloscBiegow){ return; }
         aktualnyBieg=aktualnyBieg+1;
     }
 
     void zmienjszBieg(){
-        if(aktualnyBieg-1 <=0)
-        {
-           return;
-        }
+        if(aktualnyBieg-1 <=0) { return; }
         aktualnyBieg = aktualnyBieg - 1;
     }
 

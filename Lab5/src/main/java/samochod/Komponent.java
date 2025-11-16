@@ -2,17 +2,17 @@ package samochod;
 
 public abstract class Komponent {
     String nazwa;
-    double waga;
+    public double waga;
     double cena;
 
 
-    String getNazwa(){
+    public String getNazwa(){
         return nazwa;
     }
-    double getWaga(){
+    public double getWaga(){
         return waga;
     }
-    double getCena(){
+    public double getCena(){
         return cena;
     }
 
