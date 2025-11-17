@@ -4,7 +4,7 @@ public class Silnik extends Komponent{
     double maxObroty;
     double Obroty;
 
-    public Silnik(double maxObroty, double Obroty) {
+    public Silnik(double maxObroty) {
         this.maxObroty = maxObroty;
         this.Obroty = Obroty;
     }
@@ -15,11 +15,18 @@ public class Silnik extends Komponent{
     void zatrzymaj(){
         Obroty=0;
     }
-    void zmniejszObroty(){
-        Obroty=Obroty+100;
-    }
-    void zwiekszObroty(){
+    public void zmniejszObroty(){
+        if (Obroty-100 < 0){
+            return;
+        }
         Obroty=Obroty-100;
+    }
+
+    public void zwiekszObroty(){
+        if (Obroty+100 > maxObroty){
+            return;
+        }
+        Obroty=Obroty+100;
     }
 
 
