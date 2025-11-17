@@ -8,7 +8,7 @@ public class Samochod {
     SkrzyniaBiegow skrzynia;
     Silnik silnik;
 
-    void wlacz(){
+    public void wlacz(){
         silnik.uruchom();
     }
     public void wylacz(){

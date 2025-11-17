@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" minHeight="1000.0" minWidth="1000.0" prefHeight="1000.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.samochodgui.HelloController">
+  <padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+  </padding>
+
+  <Label fx:id="welcomeText" />
+  <Button onAction="#onHelloButtonClick" text="Hello!" />
+   <BorderPane>
+      <left>
+         <Accordion minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+           <panes>
+             <TitledPane animated="false" text="Samochód">
+               <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                           <TextField promptText="Model" />
+                           <TextField layoutY="25.0" promptText="Nr rejstracyjny" />
+                           <TextField layoutY="50.0" promptText="Waga" />
+                           <TextField layoutY="75.0" promptText="Prędkość" />
+                           <Button layoutY="100.0" mnemonicParsing="false" text="Włącz" />
+                           <Button layoutX="49.0" layoutY="100.0" mnemonicParsing="false" text="Wyłącz" />
+                        </children></AnchorPane>
+               </content>
+             </TitledPane>
+             <TitledPane animated="false" text="Skrzynia biegów">
+               <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                           <TextField promptText="Nazwa" />
+                           <TextField layoutY="25.0" promptText="Cena" />
+                           <TextField layoutY="50.0" promptText="Waga" />
+                           <TextField layoutY="75.0" promptText="Bieg" />
+                           <Button layoutY="100.0" mnemonicParsing="false" text="Zwiększ bieg" />
+                           <Button layoutX="100.0" layoutY="100.0" mnemonicParsing="false" text="Zmniejsz bieg" />
+                        </children></AnchorPane>
+               </content>
+             </TitledPane>
+             <TitledPane animated="false" text="Silnik">
+               <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                           <TextField layoutY="2.0" promptText="Nazwa" />
+                           <TextField layoutY="27.0" promptText="Cena" />
+                           <TextField layoutY="52.0" promptText="Waga" />
+                           <TextField layoutY="77.0" promptText="Obroty" />
+                           <Button layoutY="102.0" mnemonicParsing="false" text="Dodaj gazu" />
+                           <Button layoutX="86.0" layoutY="102.0" mnemonicParsing="false" text="Ujmij gazu" />
+                        </children></AnchorPane>
+               </content>
+             </TitledPane>
+               <TitledPane animated="false" prefHeight="675.0" prefWidth="202.0" text="Sprzęglo">
+                 <content>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                           <TextField layoutY="2.0" promptText="Nazwa" />
+                           <TextField layoutY="27.0" promptText="Cena" />
+                           <TextField layoutY="52.0" promptText="Waga" />
+                           <TextField layoutY="77.0" promptText="Stan" />
+                           <Button layoutY="102.0" mnemonicParsing="false" text="Naciśnij" />
+                           <Button layoutX="58.0" layoutY="102.0" mnemonicParsing="false" text="Zwolnij" />
+                        </children></AnchorPane>
+                 </content>
+               </TitledPane>
+           </panes>
+         </Accordion>
+      </left></BorderPane>
+</VBox>

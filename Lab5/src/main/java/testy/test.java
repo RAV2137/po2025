@@ -13,5 +13,6 @@ public class test {
 
         Samochod samochod = new  Samochod(true, "cos", "cos", 160);
         samochod.wylacz();
+        samochod.wlacz();
     }
 }
