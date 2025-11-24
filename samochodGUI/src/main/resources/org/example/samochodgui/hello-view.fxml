@@ -8,23 +8,20 @@
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
-
-  <Label fx:id="welcomeText" />
-  <Button onAction="#onHelloButtonClick" text="Hello!" />
-   <BorderPane>
+   <BorderPane prefHeight="982.0" prefWidth="960.0">
       <left>
-         <Accordion minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+         <Accordion minHeight="-Infinity" minWidth="-Infinity" prefWidth="202.0" BorderPane.alignment="CENTER">
            <panes>
-             <TitledPane animated="false" text="Samochód">
+             <TitledPane animated="false" prefHeight="357.0" prefWidth="202.0" text="Samochód">
                <content>
-                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="355.0" prefWidth="200.0">
                         <children>
                            <TextField promptText="Model" />
-                           <TextField layoutY="25.0" promptText="Nr rejstracyjny" />
-                           <TextField layoutY="50.0" promptText="Waga" />
-                           <TextField layoutY="75.0" promptText="Prędkość" />
-                           <Button layoutY="100.0" mnemonicParsing="false" text="Włącz" />
-                           <Button layoutX="49.0" layoutY="100.0" mnemonicParsing="false" text="Wyłącz" />
+                           <TextField fx:id="nr_rejestracyjnyTextField" layoutY="25.0" promptText="Nr rejstracyjny" />
+                           <TextField fx:id="weightTextField" layoutY="50.0" promptText="Waga" />
+                           <TextField fx:id="velocityTextField" layoutY="75.0" promptText="Prędkość" />
+                           <Button fx:id="startButton" layoutY="100.0" mnemonicParsing="false" onAction="#onstartButton" text="Włącz" />
+                           <Button fx:id="stopButton" layoutX="49.0" layoutY="100.0" mnemonicParsing="false" onAction="#onstopButton" text="Wyłącz" />
                         </children></AnchorPane>
                </content>
              </TitledPane>
@@ -33,11 +30,11 @@
                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <children>
                            <TextField promptText="Nazwa" />
-                           <TextField layoutY="25.0" promptText="Cena" />
-                           <TextField layoutY="50.0" promptText="Waga" />
-                           <TextField layoutY="75.0" promptText="Bieg" />
-                           <Button layoutY="100.0" mnemonicParsing="false" text="Zwiększ bieg" />
-                           <Button layoutX="100.0" layoutY="100.0" mnemonicParsing="false" text="Zmniejsz bieg" />
+                           <TextField fx:id="cenaSkrzyniaTextField" layoutY="25.0" promptText="Cena" />
+                           <TextField fx:id="wagaSkrzyniaTextField" layoutY="50.0" promptText="Waga" />
+                           <TextField fx:id="biegSkrzyniaTextField" layoutY="75.0" promptText="Bieg" />
+                           <Button fx:id="ZwiększbiegButton" layoutY="100.0" mnemonicParsing="false" text="Zwiększ bieg" />
+                           <Button fx:id="ZmniejszbiegButton" layoutX="100.0" layoutY="100.0" mnemonicParsing="false" text="Zmniejsz bieg" />
                         </children></AnchorPane>
                </content>
              </TitledPane>
@@ -45,12 +42,12 @@
                <content>
                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <children>
-                           <TextField layoutY="2.0" promptText="Nazwa" />
-                           <TextField layoutY="27.0" promptText="Cena" />
-                           <TextField layoutY="52.0" promptText="Waga" />
-                           <TextField layoutY="77.0" promptText="Obroty" />
-                           <Button layoutY="102.0" mnemonicParsing="false" text="Dodaj gazu" />
-                           <Button layoutX="86.0" layoutY="102.0" mnemonicParsing="false" text="Ujmij gazu" />
+                           <TextField fx:id="nazwaSilnikTextField" layoutY="2.0" promptText="Nazwa" />
+                           <TextField fx:id="cenaSilnikTextField" layoutY="27.0" promptText="Cena" />
+                           <TextField fx:id="wagaSilnikTextField" layoutY="52.0" promptText="Waga" />
+                           <TextField fx:id="ObrotySilnikTextField" layoutY="77.0" promptText="Obroty" />
+                           <Button fx:id="dodaj_gazuButton" layoutY="102.0" mnemonicParsing="false" text="Dodaj gazu" />
+                           <Button fx:id="ujmij_gazuButton" layoutX="86.0" layoutY="102.0" mnemonicParsing="false" text="Ujmij gazu" />
                         </children></AnchorPane>
                </content>
              </TitledPane>
@@ -58,16 +55,23 @@
                  <content>
                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <children>
-                           <TextField layoutY="2.0" promptText="Nazwa" />
-                           <TextField layoutY="27.0" promptText="Cena" />
-                           <TextField layoutY="52.0" promptText="Waga" />
-                           <TextField layoutY="77.0" promptText="Stan" />
-                           <Button layoutY="102.0" mnemonicParsing="false" text="Naciśnij" />
-                           <Button layoutX="58.0" layoutY="102.0" mnemonicParsing="false" text="Zwolnij" />
+                           <TextField fx:id="nazwaSprzegloTextField" layoutY="2.0" promptText="Nazwa" />
+                           <TextField fx:id="cenaSprzegloTextField" layoutY="27.0" promptText="Cena" />
+                           <TextField fx:id="wagaSprzegloTextField" layoutY="52.0" promptText="Waga" />
+                           <TextField fx:id="stanSprzegloTextField" layoutY="77.0" promptText="Stan" />
+                           <Button fx:id="nacisnijButton" layoutY="102.0" mnemonicParsing="false" text="Naciśnij" />
+                           <Button fx:id="zwolnijButton" layoutX="58.0" layoutY="102.0" mnemonicParsing="false" text="Zwolnij" />
                         </children></AnchorPane>
                  </content>
                </TitledPane>
            </panes>
          </Accordion>
-      </left></BorderPane>
+      </left>
+      <top>
+         <Accordion BorderPane.alignment="CENTER">
+           <panes>
+             <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="CENTER" prefHeight="28.0" prefWidth="501.0" text="Samochód" textAlignment="CENTER" wrapText="true" />
+           </panes>
+         </Accordion>
+      </top></BorderPane>
 </VBox>
