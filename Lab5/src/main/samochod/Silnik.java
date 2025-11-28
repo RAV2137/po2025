@@ -1,11 +1,10 @@
-package samochod;
+package main.samochod;
 
 public class Silnik extends Komponent{
-    double maxObroty;
+    double maxObroty=8000;
     double Obroty;
 
-    public Silnik(double maxObroty) {
-        this.maxObroty = maxObroty;
+    public Silnik(double Obroty) {
         this.Obroty = Obroty;
     }
 

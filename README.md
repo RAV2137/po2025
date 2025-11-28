@@ -118,25 +118,25 @@ package samochodgui {
     }
 }
 
-samochod.Samochod --> samochod.Silnik
-samochod.Samochod --> samochod.SkrzyniaBiegow
-samochod.Samochod --> samochod.Pozycja
-samochod.Samochod --|> Thread
-samochod.Samochod *-- samochod.Obserwator
-samochod.Silnik --|> samochod.Komponent
-samochod.SkrzyniaBiegow --|> samochod.Komponent
-samochod.SkrzyniaBiegow --> samochod.Sprzeglo
-samochod.Sprzeglo --|> samochod.Komponent
+main.samochod.Samochod --> main.samochod.Silnik
+main.samochod.Samochod --> main.samochod.SkrzyniaBiegow
+main.samochod.Samochod --> main.samochod.Pozycja
+main.samochod.Samochod --|> Thread
+main.samochod.Samochod *-- samochod.Obserwator
+main.samochod.Silnik --|> main.samochod.Komponent
+main.samochod.SkrzyniaBiegow --|> main.samochod.Komponent
+main.samochod.SkrzyniaBiegow --> main.samochod.Sprzeglo
+main.samochod.Sprzeglo --|> main.samochod.Komponent
 
 
-samochodgui.SamochodController -> samochod.Samochod
+samochodgui.SamochodController -> main.samochod.Samochod
 samochodgui.SamochodController ..|> samochod.Obserwator
 
 samochodgui.SamochodController <-- samochodgui.NowySamochodController
 samochodgui.SamochodApplication --> samochodgui.SamochodController
 
 samochod.SamochodException --|> Exception
-samochod.SkrzyniaBiegow -- samochod.SamochodException
+main.samochod.SkrzyniaBiegow -- samochod.SamochodException
 
 hide methods
 hide members

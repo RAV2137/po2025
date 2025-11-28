@@ -1,4 +1,4 @@
-package samochod;
+package main.samochod;
 
 public class Pozycja {
     protected double x;

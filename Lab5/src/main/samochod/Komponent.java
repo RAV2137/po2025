@@ -1,9 +1,9 @@
-package samochod;
+package main.samochod;
 
 public abstract class Komponent {
-    String nazwa;
+    public String nazwa;
     public double waga;
-    double cena;
+    public double cena;
 
 
     public String getNazwa(){

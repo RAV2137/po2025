@@ -1,77 +1,244 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" minHeight="1000.0" minWidth="1000.0" prefHeight="1000.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.samochodgui.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-  </padding>
-   <BorderPane prefHeight="982.0" prefWidth="960.0">
-      <left>
-         <Accordion minHeight="-Infinity" minWidth="-Infinity" prefWidth="202.0" BorderPane.alignment="CENTER">
-           <panes>
-             <TitledPane animated="false" prefHeight="357.0" prefWidth="202.0" text="Samochód">
-               <content>
-                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="355.0" prefWidth="200.0">
-                        <children>
-                           <TextField promptText="Model" />
-                           <TextField fx:id="nr_rejestracyjnyTextField" layoutY="25.0" promptText="Nr rejstracyjny" />
-                           <TextField fx:id="weightTextField" layoutY="50.0" promptText="Waga" />
-                           <TextField fx:id="velocityTextField" layoutY="75.0" promptText="Prędkość" />
-                           <Button fx:id="startButton" layoutY="100.0" mnemonicParsing="false" onAction="#onstartButton" text="Włącz" />
-                           <Button fx:id="stopButton" layoutX="49.0" layoutY="100.0" mnemonicParsing="false" onAction="#onstopButton" text="Wyłącz" />
-                        </children></AnchorPane>
-               </content>
-             </TitledPane>
-             <TitledPane animated="false" text="Skrzynia biegów">
-               <content>
-                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <children>
-                           <TextField promptText="Nazwa" />
-                           <TextField fx:id="cenaSkrzyniaTextField" layoutY="25.0" promptText="Cena" />
-                           <TextField fx:id="wagaSkrzyniaTextField" layoutY="50.0" promptText="Waga" />
-                           <TextField fx:id="biegSkrzyniaTextField" layoutY="75.0" promptText="Bieg" />
-                           <Button fx:id="ZwiększbiegButton" layoutY="100.0" mnemonicParsing="false" text="Zwiększ bieg" />
-                           <Button fx:id="ZmniejszbiegButton" layoutX="100.0" layoutY="100.0" mnemonicParsing="false" text="Zmniejsz bieg" />
-                        </children></AnchorPane>
-               </content>
-             </TitledPane>
-             <TitledPane animated="false" text="Silnik">
-               <content>
-                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <children>
-                           <TextField fx:id="nazwaSilnikTextField" layoutY="2.0" promptText="Nazwa" />
-                           <TextField fx:id="cenaSilnikTextField" layoutY="27.0" promptText="Cena" />
-                           <TextField fx:id="wagaSilnikTextField" layoutY="52.0" promptText="Waga" />
-                           <TextField fx:id="ObrotySilnikTextField" layoutY="77.0" promptText="Obroty" />
-                           <Button fx:id="dodaj_gazuButton" layoutY="102.0" mnemonicParsing="false" text="Dodaj gazu" />
-                           <Button fx:id="ujmij_gazuButton" layoutX="86.0" layoutY="102.0" mnemonicParsing="false" text="Ujmij gazu" />
-                        </children></AnchorPane>
-               </content>
-             </TitledPane>
-               <TitledPane animated="false" prefHeight="675.0" prefWidth="202.0" text="Sprzęglo">
-                 <content>
-                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <children>
-                           <TextField fx:id="nazwaSprzegloTextField" layoutY="2.0" promptText="Nazwa" />
-                           <TextField fx:id="cenaSprzegloTextField" layoutY="27.0" promptText="Cena" />
-                           <TextField fx:id="wagaSprzegloTextField" layoutY="52.0" promptText="Waga" />
-                           <TextField fx:id="stanSprzegloTextField" layoutY="77.0" promptText="Stan" />
-                           <Button fx:id="nacisnijButton" layoutY="102.0" mnemonicParsing="false" text="Naciśnij" />
-                           <Button fx:id="zwolnijButton" layoutX="58.0" layoutY="102.0" mnemonicParsing="false" text="Zwolnij" />
-                        </children></AnchorPane>
-                 </content>
-               </TitledPane>
-           </panes>
-         </Accordion>
-      </left>
-      <top>
-         <Accordion BorderPane.alignment="CENTER">
-           <panes>
-             <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="CENTER" prefHeight="28.0" prefWidth="501.0" text="Samochód" textAlignment="CENTER" wrapText="true" />
-           </panes>
-         </Accordion>
-      </top></BorderPane>
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx/17.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.samochodgui.HelloController"
+            prefWidth="1200" prefHeight="700">
+
+    <!-- GÓRNA BELKA -->
+    <top>
+        <HBox spacing="10" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="10" bottom="10" left="10" right="10"/>
+            </padding>
+            <children>
+                <Label text="Samochód:"/>
+                <ComboBox fx:id="carSelect" prefWidth="200"/>
+                <Button text="Dodaj nowy" fx:id="dodajButton" onAction="#ondodajButton" />
+                <Button text="Usuń" fx:id="usunButton" onAction="#onusunButton" />
+            </children>
+        </HBox>
+    </top>
+
+    <!-- LEWY PANEL -->
+    <left>
+        <VBox spacing="10" prefWidth="300">
+            <padding>
+                <Insets top="10" bottom="10" left="10" right="10"/>
+            </padding>
+            <children>
+
+                <!-- SAMOCHÓD -->
+                <TitledPane text="Samochód" expanded="true">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" left="10" right="10" bottom="10"/></padding>
+                            <children>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Model" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="modelSaText"/>
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Nr rejestracyjny"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="nrRejestSaText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Waga"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="wagaSaText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Prędkość" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="predkoscSaText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Button text="Włącz" fx:id="startButton" onAction="#onstartButton" />
+                                        <Button text="Wyłącz" fx:id="stopButton" onAction="#onstopButton"/>
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+
+                <!-- SKRZYNIA BIEGÓW -->
+                <TitledPane text="Skrzynia Biegów">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" left="10" right="10" bottom="10"/></padding>
+                            <children>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Nazwa"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="nazwaSkText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Cena" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="cenaSkText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Waga" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="wagaSkText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Bieg" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="biegSkText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Button text="Zwiększ bieg" fx:id="zwiekszbiegButton" onAction="#onzwiekszbiegButton" />
+                                        <Button text="Zmniejsz bieg" fx:id="zmniejszbiegButton" onAction="#onzmniejszbiegButton" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+
+                <!-- SILNIK -->
+                <TitledPane text="Silnik">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" left="10" right="10" bottom="10"/></padding>
+                            <children>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Nazwa" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="nazwaSiText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Cena"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="cenaSiText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Waga" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="wagaSiText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Obroty"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="obrotySiText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Button text="Dodaj gazu" fx:id="dodajgazuButton" onAction="#ondodajgazuButton"/>
+                                        <Button text="Ujmij gazu" fx:id="ujmijgazuButton" onAction="#onujmijgazuButton" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+
+                <!-- SPRZĘGŁO -->
+                <TitledPane text="Sprzęgło">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" left="10" right="10" bottom="10"/></padding>
+                            <children>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Nazwa" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="nazwaSpText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Cena"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="cenaSpText"/>
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Waga"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="wagaSpText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Stan"  prefWidth="120"/>
+                                        <TextField prefWidth="140"  fx:id="stanSpText"/>
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Button text="Naciśnij" fx:id="nacisnijButton" onAction="#onnacisnijButton" />
+                                        <Button text="Zwolnij" fx:id="zwolnijButton" onAction="#onzwolnijButton" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+
+            </children>
+        </VBox>
+    </left>
+
+    <!-- MAPA -->
+    <center>
+        <Pane style="-fx-background-color: #9af59d;">
+            <children>
+                <Label text="Mapa" layoutX="20" layoutY="20"/>
+                <ImageView fx:id="carImage"
+                           layoutX="20"
+                           layoutY="50"
+                           fitWidth="80"
+                           fitHeight="80"
+                           preserveRatio="true"/>
+                <Label text="Car" layoutX="20" layoutY="140"/>
+            </children>
+        </Pane>
+    </center>
+
+</BorderPane>

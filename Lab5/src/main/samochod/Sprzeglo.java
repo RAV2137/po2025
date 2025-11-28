@@ -1,4 +1,4 @@
-package samochod;
+package main.samochod;
 
 public class Sprzeglo extends Komponent{
     int stanSprzegla;
