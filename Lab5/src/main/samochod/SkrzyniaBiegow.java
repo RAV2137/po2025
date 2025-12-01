@@ -5,9 +5,12 @@ public class SkrzyniaBiegow extends Komponent{
     public int iloscBiegow=6;
     public double aktualnePrzelozenie;
 
-    public SkrzyniaBiegow(int aktualnyBieg){
+    public SkrzyniaBiegow(int aktualnyBieg, String nazwaSp, double cenaSp, double wagaSp, int stanSp){
         this.aktualnyBieg=aktualnyBieg;
-        Sprzeglo sprz = new Sprzeglo(100);
+        Sprzeglo sprzeglo = new Sprzeglo(stanSp);
+        sprzeglo.nazwa=nazwaSp;
+        sprzeglo.cena=cenaSp;
+        sprzeglo.waga=wagaSp;
     }
 
 

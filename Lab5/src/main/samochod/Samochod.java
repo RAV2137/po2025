@@ -27,17 +27,18 @@ public class Samochod {
             this.wagaSa = wagaSa;
             this.predkosc_maxSa = predkosc_maxSa;
 
-            skrzynia = new SkrzyniaBiegow(biegSk);
+            skrzynia = new SkrzyniaBiegow(biegSk,nazwaSp, cenaSp, wagaSp, stanSp);
             skrzynia.nazwa=nazwaSk;
             skrzynia.cena=cenaSk;       //chyba do klasy to trzeba wrzucić bo syf
             skrzynia.waga=wagaSk;
+//            sprzeglo = new Sprzeglo();
 
             silnik = new Silnik(obrotySi);
             silnik.nazwa=nazwaSi;
             silnik.cena=cenaSi;
             silnik.waga=wagaSi;
 
-//            sprzeglo = new Sprzeglo();
+            pozycja = new Pozycja();
         }
 
 

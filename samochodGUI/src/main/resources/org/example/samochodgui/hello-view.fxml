@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
+<?import javafx.scene.image.Image?>
 <BorderPane xmlns="http://javafx.com/javafx/17.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.samochodgui.HelloController"
@@ -227,18 +228,25 @@
 
     <!-- MAPA -->
     <center>
-        <Pane style="-fx-background-color: #9af59d;">
+        <Pane style="-fx-background-color: #9af59d;" prefWidth="300" prefHeight="300">
             <children>
                 <Label text="Mapa" layoutX="20" layoutY="20"/>
+
                 <ImageView fx:id="carImage"
                            layoutX="20"
                            layoutY="50"
-                           fitWidth="80"
-                           fitHeight="80"
-                           preserveRatio="true"/>
+                           fitWidth="60"
+                           fitHeight="60"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@pixel-art-orange-auto.jpg" />
+                    </image>
+                </ImageView>
+
                 <Label text="Car" layoutX="20" layoutY="140"/>
             </children>
         </Pane>
+
     </center>
 
 </BorderPane>

@@ -3,8 +3,11 @@ package org.example.samochodgui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 //import main.java.samochod.*;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import main.samochod.*;
+
+import java.util.ArrayList;
 
 public class HelloController {
 
@@ -37,39 +40,10 @@ public class HelloController {
     public TextField cenaSpText;
     public TextField stanSpText;
     public TextField wagaSpText;
+    public ComboBox carSelect;
     //endregion
 
-//    //region Pobieranie i konwersja wartosci
-//    // -------- SAMOCHÓD --------
-//    String nrRejestSa = nrRejestSaText.getText();
-//    String modelSa = modelSaText.getText();
-//    double wagaSa = parseDoubleSafe(wagaSaText.getText());
-//    double predkoscSa = parseDoubleSafe(predkoscSaText.getText());
-//    // -------- SKRZYNIA --------
-//    String nazwaSk = nazwaSkText.getText();
-//    double cenaSk = parseDoubleSafe(cenaSkText.getText());
-//    double wagaSk = parseDoubleSafe(wagaSkText.getText());
-//    double biegSk = parseDoubleSafe(biegSkText.getText());
-//    // -------- SILNIK --------
-//    String nazwaSi = nazwaSiText.getText();
-//    double cenaSi = parseDoubleSafe(cenaSiText.getText());
-//    double wagaSi = parseDoubleSafe(wagaSiText.getText());
-//    double obrotySi = parseDoubleSafe(obrotySiText.getText());
-//    // -------- SPRZEGLO --------
-//    String nazwaSp = nazwaSpText.getText();
-//    String stanSp = stanSpText.getText();
-//    double cenaSp = parseDoubleSafe(cenaSpText.getText());
-//    double wagaSp = parseDoubleSafe(wagaSpText.getText());
-//    //FUNKCJA DO OBSLUGI
-//    private double parseDoubleSafe(String text) {
-//        try {
-//            return Double.parseDouble(text);
-//        } catch (Exception e) {
-//            return 0; // albo np. throw new IllegalArgumentException
-//        }
-//    }
-//    //endregion
-
+    ArrayList<Samochod> auto = new ArrayList<Samochod>();       //tablica obiektów klasy Samochod do wyboru auta
 
     @FXML
     public void onstartButton() {
@@ -88,13 +62,13 @@ public class HelloController {
         System.out.println("nacisnieto sprzeglo");}
     public void onzwolnijButton() {
 //        System.out.println(modelSaText.getText());
-        modelSaText.setText("model");
+//        modelSaText.setText("model");
     }
     public void ondodajButton() {
         System.out.println("dodano auto");
         //region Tworzenie obiektu klasy Samochod
-        Samochod auto = new Samochod(nrRejestSaText.getText(),
-                modelSaText.getText(),
+        Samochod car = new Samochod(modelSaText.getText(),
+                nrRejestSaText.getText(),
                 parseDoubleSafe(wagaSaText.getText()),
                 parseDoubleSafe(predkoscSaText.getText()),
                 nazwaSkText.getText(),
@@ -110,6 +84,8 @@ public class HelloController {
                 parseDoubleSafe(wagaSpText.getText()),
                 parseIntSafe(stanSpText.getText())
                 );
+        auto.add(car);      //dodawanie do listy obiektów
+        carSelect.getItems().add(modelSaText.getText());    //dodawanie do ComboBox
         //endregion
         }
     public void onusunButton() {
