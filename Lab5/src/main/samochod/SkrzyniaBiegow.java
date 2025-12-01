@@ -4,6 +4,7 @@ public class SkrzyniaBiegow extends Komponent{
     public int aktualnyBieg;
     public int iloscBiegow=6;
     public double aktualnePrzelozenie;
+    public Sprzeglo sprzeglo;
 
     public SkrzyniaBiegow(int aktualnyBieg, String nazwaSp, double cenaSp, double wagaSp, int stanSp){
         this.aktualnyBieg=aktualnyBieg;

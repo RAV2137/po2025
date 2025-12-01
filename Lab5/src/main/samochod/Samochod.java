@@ -2,10 +2,11 @@ package main.samochod;
 
 public class Samochod {
     boolean stanWlaczenia;
-    String nrRejestSa;
-    String modelSa;
-    double wagaSa;
-    double predkosc_maxSa;
+    public String nrRejestSa;
+    public String modelSa;
+    public double wagaSa;
+    public double predkosc_maxSa;
+    public double predkoscSa;
 
     public SkrzyniaBiegow skrzynia;
     public Silnik silnik;

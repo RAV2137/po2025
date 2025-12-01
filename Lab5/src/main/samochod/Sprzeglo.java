@@ -1,7 +1,7 @@
 package main.samochod;
 
 public class Sprzeglo extends Komponent{
-    int stanSprzegla;
+    public int stanSprzegla;
 
     public Sprzeglo(int stanSprzegla){
         this.stanSprzegla = stanSprzegla;

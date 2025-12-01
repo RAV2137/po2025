@@ -2,7 +2,6 @@ package org.example.samochodgui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-//import main.java.samochod.*;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import main.samochod.*;
@@ -42,8 +41,7 @@ public class HelloController {
     public TextField wagaSpText;
     public ComboBox carSelect;
     //endregion
-
-    ArrayList<Samochod> auto = new ArrayList<Samochod>();       //tablica obiektów klasy Samochod do wyboru auta
+    Samochod car;
 
     @FXML
     public void onstartButton() {
@@ -67,7 +65,7 @@ public class HelloController {
     public void ondodajButton() {
         System.out.println("dodano auto");
         //region Tworzenie obiektu klasy Samochod
-        Samochod car = new Samochod(modelSaText.getText(),
+        car = new Samochod(modelSaText.getText(),
                 nrRejestSaText.getText(),
                 parseDoubleSafe(wagaSaText.getText()),
                 parseDoubleSafe(predkoscSaText.getText()),
@@ -84,8 +82,9 @@ public class HelloController {
                 parseDoubleSafe(wagaSpText.getText()),
                 parseIntSafe(stanSpText.getText())
                 );
-        auto.add(car);      //dodawanie do listy obiektów
-        carSelect.getItems().add(modelSaText.getText());    //dodawanie do ComboBox
+//        auto.add(car);      //dodawanie do listy obiektów
+        carSelect.getItems().add(car);    //dodawanie do ComboBox
+        refresh();
         //endregion
         }
     public void onusunButton() {
@@ -106,7 +105,28 @@ public class HelloController {
         }
     }
 
+    void refresh(){
+        modelSaText.setText(car.modelSa);
+        nrRejestSaText.setText(car.nrRejestSa);
+        wagaSaText.setText(String.valueOf(car.wagaSa));
+        predkoscSaText.setText(String.valueOf(car.predkoscSa));
 
+        nazwaSkText.setText(car.skrzynia.getNazwa());
+        cenaSkText.setText(String.valueOf(car.skrzynia.getCena()));
+        wagaSkText.setText(String.valueOf(car.skrzynia.getWaga()));
+        biegSkText.setText(String.valueOf(car.skrzynia.aktualnyBieg));
+
+        nazwaSiText.setText(car.silnik.getNazwa());
+        cenaSiText.setText(String.valueOf(car.silnik.getCena()));
+        wagaSiText.setText(String.valueOf(car.silnik.getWaga()));
+        obrotySiText.setText(String.valueOf(car.silnik.Obroty));
+
+        nazwaSpText.setText(car.skrzynia.sprzeglo.getNazwa());
+        cenaSpText.setText(String.valueOf(car.skrzynia.sprzeglo.getCena()));
+        wagaSpText.setText(String.valueOf(car.skrzynia.sprzeglo.getWaga()));
+        stanSpText.setText(String.valueOf(car.skrzynia.sprzeglo.stanSprzegla));
+
+    }
 
 //    @FXML
 //    private Label welcomeText;
