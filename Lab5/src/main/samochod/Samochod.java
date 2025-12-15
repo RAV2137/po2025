@@ -18,32 +18,38 @@ public class Samochod {
     public void wylacz(){silnik.zatrzymaj();}
 
 
-    public Samochod(String modelSa, String nrRejestSa, double wagaSa, double predkosc_maxSa,
-                    String nazwaSk, double cenaSk, double wagaSk,int biegSk,
-                    String nazwaSi, double cenaSi, double wagaSi, int obrotySi,
-                    String nazwaSp, double cenaSp, double wagaSp, int stanSp) {
+//    public Samochod(String modelSa, String nrRejestSa, double wagaSa, double predkosc_maxSa,
+//                    String nazwaSk, double cenaSk, double wagaSk,int biegSk,
+//                    String nazwaSi, double cenaSi, double wagaSi, int obrotySi,
+//                    String nazwaSp, double cenaSp, double wagaSp, int stanSp) {
+//
+//            this.modelSa=modelSa;
+//            this.nrRejestSa = nrRejestSa;
+//            this.wagaSa = wagaSa;
+//            this.predkosc_maxSa = predkosc_maxSa;
+//
+//            skrzynia = new SkrzyniaBiegow(biegSk,nazwaSp, cenaSp, wagaSp, stanSp);
+//            skrzynia.nazwa=nazwaSk;
+//            skrzynia.cena=cenaSk;       //chyba do klasy to trzeba wrzucić bo syf
+//            skrzynia.waga=wagaSk;
+////            sprzeglo = new Sprzeglo();
+//
+//            silnik = new Silnik(obrotySi);
+//            silnik.nazwa=nazwaSi;
+//            silnik.cena=cenaSi;
+//            silnik.waga=wagaSi;
+//
+//            pozycja = new Pozycja();
+//        }
 
-            this.modelSa=modelSa;
-            this.nrRejestSa = nrRejestSa;
-            this.wagaSa = wagaSa;
-            this.predkosc_maxSa = predkosc_maxSa;
+    public Samochod(Silnik silnik, Sprzeglo sprzeglo, SkrzyniaBiegow skrzynia) {
+        this.silnik = silnik;
+        this.skrzynia = skrzynia;
+        skrzynia.sprzeglo=sprzeglo;
 
-            skrzynia = new SkrzyniaBiegow(biegSk,nazwaSp, cenaSp, wagaSp, stanSp);
-            skrzynia.nazwa=nazwaSk;
-            skrzynia.cena=cenaSk;       //chyba do klasy to trzeba wrzucić bo syf
-            skrzynia.waga=wagaSk;
-//            sprzeglo = new Sprzeglo();
-
-            silnik = new Silnik(obrotySi);
-            silnik.nazwa=nazwaSi;
-            silnik.cena=cenaSi;
-            silnik.waga=wagaSi;
-
-            pozycja = new Pozycja();
-        }
-
-
+        pozycja = new Pozycja();
     }
+}
 
 //    public Samochod(boolean stanWlaczenia,String nrRejstracji, String model, double predkosc_max){
 //        this.stanWlaczenia = stanWlaczenia;

@@ -1,11 +1,18 @@
 package org.example.samochodgui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import main.samochod.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HelloController {
@@ -39,57 +46,96 @@ public class HelloController {
     public TextField cenaSpText;
     public TextField stanSpText;
     public TextField wagaSpText;
-    public ComboBox carSelect;
+    public ComboBox<Samochod> carSelect;
+
     //endregion
-    Samochod car;
+    private Samochod car;
 
     @FXML
     public void onstartButton() {
-        System.out.println("Wlaczono silnik");}
-    public void onstopButton() {
-        System.out.println("Wylaczono silnik");}
-    public void onzwiekszbiegButton() {
-        System.out.println("zwiekszono bieg");}
-    public void onzmniejszbiegButton() {
-        System.out.println("zmniejszono bieg");}
-    public void ondodajgazuButton() {
-        System.out.println("dodajgazu bieg");}
-    public void onujmijgazuButton() {
-        System.out.println("ujmijgazu bieg");}
-    public void onnacisnijButton() {
-        System.out.println("nacisnieto sprzeglo");}
-    public void onzwolnijButton() {
-//        System.out.println(modelSaText.getText());
-//        modelSaText.setText("model");
+        car.wlacz();
+        refresh();
+        System.out.println("Wlaczono silnik");
     }
-    public void ondodajButton() {
+
+    public void onstopButton() {
+        car.wylacz();
+        refresh();
+        System.out.println("Wylaczono silnik");
+    }
+
+    public void onzwiekszbiegButton() {
+        car.skrzynia.zwiekszBieg();
+        refresh();
+        System.out.println("zwiekszono bieg");
+    }
+
+    public void onzmniejszbiegButton() {
+        car.skrzynia.zmienjszBieg();
+        refresh();
+        System.out.println("zmniejszono bieg");
+    }
+
+    public void ondodajgazuButton() {
+        car.silnik.zwiekszObroty();
+        refresh();
+        System.out.println("dodajgazu bieg");
+    }
+
+    public void onujmijgazuButton() {
+        car.silnik.zmniejszObroty();
+        refresh();
+        System.out.println("ujmijgazu bieg");
+    }
+
+    public void onnacisnijButton() {
+        //sprzeglo metoda
+        refresh();
+        System.out.println("nacisnieto sprzeglo");
+    }
+
+    public void onzwolnijButton() {
+        //sprzeglo metoda
+        refresh();
+        System.out.println("zwolniono sprzeglo");
+    }
+
+    public void ondodajButton() throws IOException
+    {
+        openAddCarWindow();
         System.out.println("dodano auto");
-        //region Tworzenie obiektu klasy Samochod
-        car = new Samochod(modelSaText.getText(),
-                nrRejestSaText.getText(),
-                parseDoubleSafe(wagaSaText.getText()),
-                parseDoubleSafe(predkoscSaText.getText()),
-                nazwaSkText.getText(),
-                parseDoubleSafe(cenaSkText.getText()),
-                parseDoubleSafe(wagaSkText.getText()),
-                parseIntSafe(biegSkText.getText()),
-                nazwaSiText.getText(),
-                parseDoubleSafe(cenaSiText.getText()),
-                parseDoubleSafe(wagaSiText.getText()),
-                parseIntSafe(obrotySiText.getText()),
-                nazwaSpText.getText(),
-                parseDoubleSafe(cenaSpText.getText()),
-                parseDoubleSafe(wagaSpText.getText()),
-                parseIntSafe(stanSpText.getText())
-                );
+//        //region Tworzenie obiektu klasy Samochod
+//        car = new Samochod(modelSaText.getText(),
+//                nrRejestSaText.getText(),
+//                parseDoubleSafe(wagaSaText.getText()),
+//                parseDoubleSafe(predkoscSaText.getText()),
+//                nazwaSkText.getText(),
+//                parseDoubleSafe(cenaSkText.getText()),
+//                parseDoubleSafe(wagaSkText.getText()),
+//                parseIntSafe(biegSkText.getText()),
+//                nazwaSiText.getText(),
+//                parseDoubleSafe(cenaSiText.getText()),
+//                parseDoubleSafe(wagaSiText.getText()),
+//                parseIntSafe(obrotySiText.getText()),
+//                nazwaSpText.getText(),
+//                parseDoubleSafe(cenaSpText.getText()),
+//                parseDoubleSafe(wagaSpText.getText()),
+//                parseIntSafe(stanSpText.getText())
+//        );
 //        auto.add(car);      //dodawanie do listy obiektów
         carSelect.getItems().add(car);    //dodawanie do ComboBox
-        refresh();
         //endregion
-        }
+    }
+
     public void onusunButton() {
-        System.out.println("usunieto auto");}
-//    FUNKCJA DO OBSLUGI POBIERANIE WARTOŚCI
+
+        if (car != null) {
+            carSelect.getItems().remove(car);
+        }
+        System.out.println("usunieto auto");
+    }
+
+    //    FUNKCJA DO OBSLUGI POBIERANIE WARTOŚCI
     private double parseDoubleSafe(String text) {
         try {
             return Double.parseDouble(text);
@@ -97,6 +143,7 @@ public class HelloController {
             return 0; // albo np. throw new IllegalArgumentException
         }
     }
+
     private Integer parseIntSafe(String text) {
         try {
             return Integer.parseInt(text);
@@ -105,7 +152,8 @@ public class HelloController {
         }
     }
 
-    void refresh(){
+
+    void refresh() {
         modelSaText.setText(car.modelSa);
         nrRejestSaText.setText(car.nrRejestSa);
         wagaSaText.setText(String.valueOf(car.wagaSa));
@@ -128,9 +176,27 @@ public class HelloController {
 
     }
 
-//    @FXML
-//    private Label welcomeText;
-//    @FXML
-//    protected void onHelloButtonClick() {
-//        welcomeText.setText("Welcome to JavaFX Application!");}
+
+    public void carSelect(ActionEvent actionEvent) {
+        car = carSelect.getSelectionModel().getSelectedItem();
+        refresh();
+    }
+
+    public void openAddCarWindow() throws IOException {
+        FXMLLoader loader = new
+                FXMLLoader(getClass().getResource("dodaj_samochod.fxml"));
+
+        Parent root = loader.load();
+        // pobranie instancji drugiego kontrolera
+        DodajSamochodController addCarController = loader.getController();      //NIE ZADAJEMY PYTAŃ
+        // przekazanie referencji do tego kontrolera
+        addCarController.setMainController(this);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void addCarToList(Samochod new_car){
+        carSelect.getItems().add(new_car);}
 }

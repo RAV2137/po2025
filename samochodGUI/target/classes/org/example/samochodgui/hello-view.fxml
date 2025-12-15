@@ -19,7 +19,7 @@
             </padding>
             <children>
                 <Label text="Samochód:"/>
-                <ComboBox fx:id="carSelect" prefWidth="200"/>
+                <ComboBox fx:id="carSelect" prefWidth="200" onAction="#carSelect"/>
                 <Button text="Dodaj nowy" fx:id="dodajButton" onAction="#ondodajButton" />
                 <Button text="Usuń" fx:id="usunButton" onAction="#onusunButton" />
             </children>
