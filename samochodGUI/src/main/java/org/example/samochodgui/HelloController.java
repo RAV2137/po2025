@@ -65,37 +65,37 @@ public class HelloController {
     }
 
     public void onzwiekszbiegButton() {
-        car.skrzynia.zwiekszBieg();
+        car.zwiekszBieg();
         refresh();
         System.out.println("zwiekszono bieg");
     }
 
     public void onzmniejszbiegButton() {
-        car.skrzynia.zmienjszBieg();
+        car.zmniejszBieg();
         refresh();
         System.out.println("zmniejszono bieg");
     }
 
     public void ondodajgazuButton() {
-        car.silnik.zwiekszObroty();
+        car.zwiekszObroty();
         refresh();
         System.out.println("dodajgazu");
     }
 
     public void onujmijgazuButton() {
-        car.silnik.zmniejszObroty();
+        car.zmniejszObroty();
         refresh();
         System.out.println("ujmijgazu bieg");
     }
 
     public void onnacisnijButton() {
-        //sprzeglo metoda
+        car.wcisnijSprzeglo();
         refresh();
         System.out.println("nacisnieto sprzeglo");
     }
 
     public void onzwolnijButton() {
-        //sprzeglo metoda
+        car.zwolnijSprzeglo();
         refresh();
         System.out.println("zwolniono sprzeglo");
     }
@@ -131,8 +131,10 @@ public class HelloController {
 
         if (car != null) {
             carSelect.getItems().remove(car);
+            car = null;
         }
         System.out.println("usunieto auto");
+        refresh();
     }
 
 

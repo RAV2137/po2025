@@ -1,7 +1,7 @@
 package main.samochod;
 
 public class Silnik extends Komponent{
-    double maxObroty;
+    public double maxObroty;
     public double Obroty;
 
 
@@ -16,8 +16,7 @@ public class Silnik extends Komponent{
         Obroty=800;
     }
     void zatrzymaj(){
-        Obroty=0;
-    }
+        Obroty=0;}
     public void zmniejszObroty(){
         if (Obroty-100 < 0  ){
             return;}

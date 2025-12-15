@@ -1,7 +1,7 @@
 package main.samochod;
 
 public class SkrzyniaBiegow extends Komponent{
-    public int aktualnyBieg;
+    public int aktualnyBieg=0;
     public int iloscBiegow;
     public double aktualnePrzelozenie;
     public Sprzeglo sprzeglo;
@@ -12,6 +12,7 @@ public class SkrzyniaBiegow extends Komponent{
         this.cena=cena;
         this.waga=waga;
         this.iloscBiegow=iloscBiegow;
+        aktualnePrzelozenie();
     }
 
 
@@ -21,15 +22,13 @@ public class SkrzyniaBiegow extends Komponent{
         aktualnyBieg=aktualnyBieg+1;
     }
 
-    public void zmienjszBieg(){
+    public void zmniejszBieg(){
         if(aktualnyBieg-1 <=0) { return; }
         aktualnyBieg = aktualnyBieg - 1;
     }
 
-    int aktualnyBieg(){
-        return aktualnyBieg;
+    void aktualnePrzelozenie(){
+        aktualnePrzelozenie= (double) (1+aktualnyBieg) / iloscBiegow ;
     }
-
-    void aktualnePrzelozenie(){}
     //</editor-fold>
 }

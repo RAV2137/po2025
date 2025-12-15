@@ -40,9 +40,7 @@ public class DodajSamochodController {
     private Silnik silnik;
     private Sprzeglo sprzeglo;
     private SkrzyniaBiegow skrzynia;
-//    String karoseriamodel;
-//    String karoserianr_rejestr;
-//
+
     @FXML
     public void ondodajButton(ActionEvent actionEvent) {
         String karoserianr_rejestr = karoserianr_rejestrText.getText();
@@ -82,13 +80,6 @@ public class DodajSamochodController {
         sprzegloSelect.getItems().add(sprzeglo);
     }
 
-    public void ondodajkaroserieButton(ActionEvent actionEvent) {
-    }
-
-
-    public void onKaroseriaSelect(ActionEvent actionEvent) {
-
-    }
     public void onSkrzyniaSelect(ActionEvent actionEvent) {
         refresh_skrzynia();
     }
@@ -112,7 +103,7 @@ public class DodajSamochodController {
         silnikNazwaText.setText(silnik.getNazwa());
         silnikCenaText.setText(String.valueOf(silnik.getCena()));
         silnikWagaText.setText(String.valueOf(silnik.getWaga()));
-        silnikMaxObrotyText.setText(String.valueOf(silnik.Obroty));}
+        silnikMaxObrotyText.setText(String.valueOf(silnik.maxObroty));}
     void refresh_sprzeglo(){
         // Sprzęgło
         sprzeglo = sprzegloSelect.getSelectionModel().getSelectedItem();
@@ -126,5 +117,21 @@ public class DodajSamochodController {
     public void setMainController(HelloController mainController) {     //IDK
         this.mainController = mainController;
 //        silnikSelect.getItems().add(mainController.silnik);
+    }
+    public void initialize() {
+        //region PRzykladowe komponenty
+        Silnik silnik = new Silnik ("Honda K20A", 20000.0, 150, 8400);
+        silnikSelect.getItems().add(silnik);
+        silnik = new Silnik ("BMW S54B32", 40000.0, 170, 8000);
+        silnikSelect.getItems().add(silnik);
+        SkrzyniaBiegow skrzynia = new SkrzyniaBiegow("Getrag 420G", 10000.0,60, 6);
+        skrzyniaSelect.getItems().add(skrzynia);
+        skrzynia= new SkrzyniaBiegow("Tremec T56", 15000.0 , 65, 6);
+        skrzyniaSelect.getItems().add(skrzynia);
+        Sprzeglo sprzeglo = new Sprzeglo("Exedy Stage 1", 2000.0, 6, 100);
+        sprzegloSelect.getItems().add(sprzeglo);
+        sprzeglo = new  Sprzeglo("Clutch Masters FX400", 3000.0, 7, 100);
+        sprzegloSelect.getItems().add(sprzeglo);
+        //endregion
     }
 }

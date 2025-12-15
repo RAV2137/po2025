@@ -2,6 +2,7 @@ package main.samochod;
 
 public class Sprzeglo extends Komponent{
     public int stanSprzegla;
+    public boolean wcisniecie;
 
     public Sprzeglo(String nazwa, Double cena, double waga,int stanSprzegla){
         this.nazwa=nazwa;
@@ -11,8 +12,10 @@ public class Sprzeglo extends Komponent{
     }
 
     void wcisnij(){
+        wcisniecie=true;
     }
     void zwolnij(){
+        wcisniecie=false;
     }
 
 }

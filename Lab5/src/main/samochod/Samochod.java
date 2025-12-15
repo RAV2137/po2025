@@ -10,11 +10,24 @@ public class Samochod {
     public Silnik silnik;
     public Pozycja pozycja;
 
-    public void wlacz(){
-        silnik.uruchom();
-    }
-    public void wylacz(){silnik.zatrzymaj();}
+    public void wlacz(){silnik.uruchom(); predkoscSa();}
+    public void wylacz(){silnik.zatrzymaj(); predkoscSa();}
 
+    public void predkoscSa() {
+        skrzynia.aktualnePrzelozenie();
+        if (!skrzynia.sprzeglo.wcisniecie) {
+            predkoscSa = silnik.Obroty * skrzynia.aktualnePrzelozenie / 60 * 2 / 1000 * 3600;
+        }
+        else { predkoscSa=0;};
+    }
+    public void zwiekszObroty(){silnik.zwiekszObroty(); predkoscSa();}
+    public void zmniejszObroty(){silnik.zmniejszObroty(); predkoscSa();}
+
+    public void wcisnijSprzeglo(){skrzynia.sprzeglo.wcisnij(); predkoscSa();}
+    public void zwolnijSprzeglo(){skrzynia.sprzeglo.zwolnij(); predkoscSa();}
+
+    public void zwiekszBieg(){skrzynia.zwiekszBieg(); predkoscSa();}
+    public void zmniejszBieg(){skrzynia.zmniejszBieg(); predkoscSa();}
 
 
     public Samochod(String model, String nrRejest, Silnik silnik, Sprzeglo sprzeglo, SkrzyniaBiegow skrzynia) {
@@ -26,7 +39,6 @@ public class Samochod {
         skrzynia.sprzeglo=sprzeglo;
 
         wagaSa = silnik.waga + skrzynia.waga + sprzeglo.waga;
-        predkoscSa = 200;          // do dokończenia ilośc biegów i przełożenie
         pozycja = new Pozycja();
     }
 }
