@@ -3,16 +3,13 @@ package main.samochod;
 public class Silnik extends Komponent{
     double maxObroty;
     public double Obroty;
-    public Silnik(double Obroty) {
-        this.Obroty = Obroty;
-        maxObroty=8000;
-    }
 
-    public Silnik(String nazwa, Double cena, double waga, int Obroty) {
-        this.Obroty = Obroty;
+
+    public Silnik(String nazwa, Double cena, double waga, int maxObroty) {
         this.nazwa=nazwa;
         this.cena=cena;
         this.waga=waga;
+        this.maxObroty = maxObroty;
     }
 
     public void uruchom(){

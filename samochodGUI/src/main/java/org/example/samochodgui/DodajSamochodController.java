@@ -15,11 +15,11 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
 public class DodajSamochodController {
+    public Button dodajButton;
     public Button anulujButton;
     public ComboBox<SkrzyniaBiegow> skrzyniaSelect;
     public ComboBox<Silnik> silnikSelect;
     public ComboBox<Sprzeglo> sprzegloSelect;
-    public ComboBox karoseriaSelect;
 
     public TextField skrzyniaNazwaText;
     public TextField skrzyniaCenaText;
@@ -33,20 +33,25 @@ public class DodajSamochodController {
     public TextField sprzegloCenaText;
     public TextField sprzegloWagaText;
     public TextField sprzegloStanText;
-    public TextField karoseriaNazwaText;
-    public TextField karoseriaCenaText;
-    public TextField karoseriaWagaText;
-    public Button dodajButton;
+    public TextField karoseriamodelText;
+    public TextField karoserianr_rejestrText;
 
-    Silnik silnik;
-    Sprzeglo sprzeglo;
-    SkrzyniaBiegow skrzynia;
-
+    //    Wybrane komponenty
+    private Silnik silnik;
+    private Sprzeglo sprzeglo;
+    private SkrzyniaBiegow skrzynia;
+//    String karoseriamodel;
+//    String karoserianr_rejestr;
+//
     @FXML
     public void ondodajButton(ActionEvent actionEvent) {
-
-        Samochod car= new Samochod( silnik, sprzeglo, skrzynia);
+        String karoserianr_rejestr = karoserianr_rejestrText.getText();
+        String karoseriamodel = karoseriamodelText.getText();
+        Samochod car= new Samochod(karoseriamodel,karoserianr_rejestr, silnik, sprzeglo, skrzynia);
         mainController.addCarToList(car);
+//        mainController.silnik = silnik;
+//        mainController.sprzeglo = sprzeglo;     //Pzekazanie stworzonych elementów do głównego Controllera
+//        mainController.skrzynia = skrzynia;
         Stage stage = (Stage)dodajButton.getScene().getWindow();
         stage.close();
     }
@@ -117,9 +122,9 @@ public class DodajSamochodController {
         sprzegloStanText.setText(String.valueOf(sprzeglo.stanSprzegla));
     }
 
-
-    private HelloController mainController; // referencja do pierwszego kontrolera
+    HelloController mainController;
     public void setMainController(HelloController mainController) {     //IDK
         this.mainController = mainController;
+//        silnikSelect.getItems().add(mainController.silnik);
     }
 }

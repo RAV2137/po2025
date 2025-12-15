@@ -3,10 +3,6 @@ package main.samochod;
 public class Sprzeglo extends Komponent{
     public int stanSprzegla;
 
-    public Sprzeglo(int stanSprzegla){
-        this.stanSprzegla = stanSprzegla;
-    }
-
     public Sprzeglo(String nazwa, Double cena, double waga,int stanSprzegla){
         this.nazwa=nazwa;
         this.cena=cena;

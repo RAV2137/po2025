@@ -79,7 +79,7 @@ public class HelloController {
     public void ondodajgazuButton() {
         car.silnik.zwiekszObroty();
         refresh();
-        System.out.println("dodajgazu bieg");
+        System.out.println("dodajgazu");
     }
 
     public void onujmijgazuButton() {
@@ -133,23 +133,6 @@ public class HelloController {
             carSelect.getItems().remove(car);
         }
         System.out.println("usunieto auto");
-    }
-
-    //    FUNKCJA DO OBSLUGI POBIERANIE WARTOŚCI
-    private double parseDoubleSafe(String text) {
-        try {
-            return Double.parseDouble(text);
-        } catch (Exception e) {
-            return 0; // albo np. throw new IllegalArgumentException
-        }
-    }
-
-    private Integer parseIntSafe(String text) {
-        try {
-            return Integer.parseInt(text);
-        } catch (Exception e) {
-            return 0;
-        }
     }
 
 

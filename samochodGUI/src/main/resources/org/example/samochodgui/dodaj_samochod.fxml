@@ -12,7 +12,6 @@
 
     <!-- GÓRA -->
     <HBox spacing="10" alignment="CENTER">
-        <ComboBox fx:id="karoseriaSelect" promptText="Karoseria" prefWidth="150" onAction="#onKaroseriaSelect"/>
         <ComboBox fx:id="skrzyniaSelect" promptText="Skrzynia" prefWidth="150" onAction="#onSkrzyniaSelect" />
         <ComboBox fx:id="silnikSelect" promptText="Silnik" prefWidth="150" onAction="#onSilnikSelect"/>
         <ComboBox fx:id="sprzegloSelect" promptText="Sprzęgło" prefWidth="150" onAction="#onSprzegloSelect" />
@@ -25,10 +24,8 @@
         <!-- SAMOCHÓD -->
         <VBox spacing="8" alignment="CENTER" prefWidth="220" style="-fx-border-color:black; -fx-padding:10;">
             <Label text="Karoseria" style="-fx-font-weight:bold"/>
-            <TextField fx:id="karoseriaNazwaText" promptText="Nazwa" />
-            <TextField fx:id="karoseriaCenaText" promptText="Cena"/>
-            <TextField fx:id="karoseriaWagaText" promptText="Waga"/>
-            <Button text="Dodaj karoserie" onAction="#ondodajkaroserieButton"/>
+            <TextField fx:id="karoseriamodelText" promptText="Model" />
+            <TextField fx:id="karoserianr_rejestrText" promptText="Numer Rejestracyjny"/>
         </VBox>
         <!-- SKRZYNIA -->
         <VBox spacing="8" alignment="CENTER" prefWidth="220" style="-fx-border-color:black; -fx-padding:10;">
