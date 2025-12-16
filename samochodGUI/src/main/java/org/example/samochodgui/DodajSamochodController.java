@@ -15,6 +15,7 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
 public class DodajSamochodController {
+    //region Initialization of Buttons and TextFields
     public Button dodajButton;
     public Button anulujButton;
     public ComboBox<SkrzyniaBiegow> skrzyniaSelect;
@@ -35,6 +36,7 @@ public class DodajSamochodController {
     public TextField sprzegloStanText;
     public TextField karoseriamodelText;
     public TextField karoserianr_rejestrText;
+    //endregion
 
     //    Wybrane komponenty
     private Silnik silnik;
@@ -43,12 +45,18 @@ public class DodajSamochodController {
 
     @FXML
     public void ondodajButton(ActionEvent actionEvent) {
-        String karoserianr_rejestr = karoserianr_rejestrText.getText();
+        if(skrzynia==null){mainController.pokazBlad("Wybierz skrzynie"); return;};
+        if(silnik==null){mainController.pokazBlad("Wybierz silnik"); return;};
+        if(sprzeglo==null){mainController.pokazBlad("Wybierz sprzeglo"); return;};
+        if(karoseriamodelText.getText().isEmpty()){mainController.pokazBlad("Wpisz model");return;}
+        if(karoserianr_rejestrText.getText().isEmpty()){mainController.pokazBlad("Wpisz numer rejestracyjny");return;}
+
         String karoseriamodel = karoseriamodelText.getText();
+        String karoserianr_rejestr = karoserianr_rejestrText.getText();
         Samochod car= new Samochod(karoseriamodel,karoserianr_rejestr, silnik, sprzeglo, skrzynia);
         mainController.addCarToList(car);
 //        mainController.silnik = silnik;
-//        mainController.sprzeglo = sprzeglo;     //Pzekazanie stworzonych elementów do głównego Controllera
+//        mainController.sprzeglo = sprzeglo;     //Przekazanie stworzonych elementów do głównego Controllera
 //        mainController.skrzynia = skrzynia;
         Stage stage = (Stage)dodajButton.getScene().getWindow();
         stage.close();
@@ -58,26 +66,41 @@ public class DodajSamochodController {
         stage.close();
     }
     public void ondodajSkrzynieButton(ActionEvent actionEvent) {
-        skrzynia = new SkrzyniaBiegow(skrzyniaNazwaText.getText(),
-                parseDouble(skrzyniaCenaText.getText()),
-                parseDouble(skrzyniaWagaText.getText()),
-                parseInt(skrzyniaMaxBiegText.getText()));
-        skrzyniaSelect.getItems().add(skrzynia);
+        try {
+            SkrzyniaBiegow skrzynia = new SkrzyniaBiegow(
+                    skrzyniaNazwaText.getText(),
+                    Double.parseDouble(skrzyniaCenaText.getText()),
+                    Double.parseDouble(skrzyniaWagaText.getText()),
+                    Integer.parseInt(skrzyniaMaxBiegText.getText())
+            );
+
+            skrzyniaSelect.getItems().add(skrzynia);
+
+        } catch (NumberFormatException e) {
+            mainController.pokazBlad("Cena, waga i liczba biegów muszą być liczbami");
+        }
     }
     public void ondodajSilnikButton(ActionEvent actionEvent) {
-        silnik = new Silnik(silnikNazwaText.getText(),
-                parseDouble(silnikCenaText.getText()),
-                parseDouble(silnikWagaText.getText()),
-                parseInt(silnikMaxObrotyText.getText()));
-        silnikSelect.getItems().add(silnik);
-
+        try {
+            silnik = new Silnik(silnikNazwaText.getText(),
+                    parseDouble(silnikCenaText.getText()),
+                    parseDouble(silnikWagaText.getText()),
+                    parseInt(silnikMaxObrotyText.getText()));
+            silnikSelect.getItems().add(silnik);
+        } catch (NumberFormatException e) {
+            mainController.pokazBlad("Cena, waga i maksymalne obroty muszą być liczbami");
+        }
     }
     public void ondodajSprzegloButton(ActionEvent actionEvent) {
+        try{
         sprzeglo = new Sprzeglo(sprzegloNazwaText.getText(),
                 parseDouble(sprzegloCenaText.getText()),
                 parseDouble(sprzegloWagaText.getText()),
                 parseInt(sprzegloStanText.getText()));
-        sprzegloSelect.getItems().add(sprzeglo);
+        sprzegloSelect.getItems().add(sprzeglo);}
+        catch (NumberFormatException e) {
+            mainController.pokazBlad("Cena, waga i stan muszą być liczbami");
+        }
     }
 
     public void onSkrzyniaSelect(ActionEvent actionEvent) {
@@ -89,7 +112,6 @@ public class DodajSamochodController {
     public void onSprzegloSelect(ActionEvent actionEvent) {
         refresh_sprzeglo();
     }
-
     void refresh_skrzynia() {
         // Skrzynia
         skrzynia = skrzyniaSelect.getSelectionModel().getSelectedItem();
@@ -134,4 +156,4 @@ public class DodajSamochodController {
         sprzegloSelect.getItems().add(sprzeglo);
         //endregion
     }
-}
+    }

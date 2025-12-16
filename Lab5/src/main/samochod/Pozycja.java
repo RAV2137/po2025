@@ -1,8 +1,8 @@
 package main.samochod;
 
 public class Pozycja {
-    protected double x;
-    protected double y;
+    public double x;
+    public double y;
 
     public Pozycja(){
         x=0;
@@ -17,9 +17,9 @@ public class Pozycja {
     public String getPozycja(){
         return String.valueOf(x)+ String.valueOf(y);
     }
-    void aktualizujPozycje(double deltaX, double deltaY){
+    public void aktualizujPozycje(double deltaX, double deltaY){
         x=x+deltaX;
         y=y+deltaY;
-    }
+        }
 
 }

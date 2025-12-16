@@ -1,14 +1,20 @@
 package org.example.samochodgui;
 
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.samochod.*;
 
@@ -47,54 +53,64 @@ public class HelloController {
     public TextField stanSpText;
     public TextField wagaSpText;
     public ComboBox<Samochod> carSelect;
+    public Pane mapa;
 
     //endregion
     private Samochod car;
 
     @FXML
     public void onstartButton() {
+        if(car==null){pokazBlad("Wybierz auto"); return;};
         car.wlacz();
         refresh();
         System.out.println("Wlaczono silnik");
     }
 
-    public void onstopButton() {
+    public void onstopButton(){
+        if(car==null){pokazBlad("Wybierz auto"); return;};
         car.wylacz();
         refresh();
         System.out.println("Wylaczono silnik");
     }
 
     public void onzwiekszbiegButton() {
+        if(car==null){pokazBlad("Wybierz auto"); return;};
         car.zwiekszBieg();
         refresh();
         System.out.println("zwiekszono bieg");
     }
 
     public void onzmniejszbiegButton() {
+        if(car==null){pokazBlad("Wybierz auto"); return;};
         car.zmniejszBieg();
         refresh();
         System.out.println("zmniejszono bieg");
     }
 
     public void ondodajgazuButton() {
+        if(car==null){pokazBlad("Wybierz auto"); return;};
         car.zwiekszObroty();
         refresh();
         System.out.println("dodajgazu");
     }
 
     public void onujmijgazuButton() {
+        if(car==null){pokazBlad("Wybierz auto"); return;};
         car.zmniejszObroty();
         refresh();
-        System.out.println("ujmijgazu bieg");
+        System.out.println("ujmijgazu");
+
     }
 
     public void onnacisnijButton() {
+        if(car==null){pokazBlad("Wybierz auto"); return;};
         car.wcisnijSprzeglo();
         refresh();
         System.out.println("nacisnieto sprzeglo");
     }
 
     public void onzwolnijButton() {
+        if(car==null){pokazBlad("Wybierz auto"); return;};
         car.zwolnijSprzeglo();
         refresh();
         System.out.println("zwolniono sprzeglo");
@@ -104,41 +120,25 @@ public class HelloController {
     {
         openAddCarWindow();
         System.out.println("dodano auto");
-//        //region Tworzenie obiektu klasy Samochod
-//        car = new Samochod(modelSaText.getText(),
-//                nrRejestSaText.getText(),
-//                parseDoubleSafe(wagaSaText.getText()),
-//                parseDoubleSafe(predkoscSaText.getText()),
-//                nazwaSkText.getText(),
-//                parseDoubleSafe(cenaSkText.getText()),
-//                parseDoubleSafe(wagaSkText.getText()),
-//                parseIntSafe(biegSkText.getText()),
-//                nazwaSiText.getText(),
-//                parseDoubleSafe(cenaSiText.getText()),
-//                parseDoubleSafe(wagaSiText.getText()),
-//                parseIntSafe(obrotySiText.getText()),
-//                nazwaSpText.getText(),
-//                parseDoubleSafe(cenaSpText.getText()),
-//                parseDoubleSafe(wagaSpText.getText()),
-//                parseIntSafe(stanSpText.getText())
-//        );
-//        auto.add(car);      //dodawanie do listy obiektów
-        carSelect.getItems().add(car);    //dodawanie do ComboBox
-        //endregion
+
     }
 
     public void onusunButton() {
-
-        if (car != null) {
-            carSelect.getItems().remove(car);
-            car = null;
-        }
+        if(car==null){pokazBlad("Wybierz auto"); return;};
+        carSelect.getItems().remove(car);
+        car = null;
+        carSelect.getSelectionModel().selectFirst();
         System.out.println("usunieto auto");
         refresh();
     }
 
+    public void carSelect(ActionEvent actionEvent) {
+        car = carSelect.getSelectionModel().getSelectedItem();
+        refresh();
+    }
 
     void refresh() {
+        if(car==null){System.out.println("XD problem"); return;};
         modelSaText.setText(car.modelSa);
         nrRejestSaText.setText(car.nrRejestSa);
         wagaSaText.setText(String.valueOf(car.wagaSa));
@@ -159,12 +159,14 @@ public class HelloController {
         wagaSpText.setText(String.valueOf(car.skrzynia.sprzeglo.getWaga()));
         stanSpText.setText(String.valueOf(car.skrzynia.sprzeglo.stanSprzegla));
 
-    }
+//        carImageView.setTranslateX(car.pozycja.x);
+//        carImageView.setTranslateY(car.pozycja.y);
 
+        Platform.runLater(() -> {
+            carImageView.setTranslateX(car.pozycja.x);
+            carImageView.setTranslateY(car.pozycja.y);
+        });
 
-    public void carSelect(ActionEvent actionEvent) {
-        car = carSelect.getSelectionModel().getSelectedItem();
-        refresh();
     }
 
     public void openAddCarWindow() throws IOException {
@@ -184,4 +186,38 @@ public class HelloController {
 
     public void addCarToList(Samochod new_car){
         carSelect.getItems().add(new_car);}
+    public void pokazBlad(String wiadomosc) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Błąd");
+            alert.setHeaderText(null);
+            alert.setContentText(wiadomosc);
+            alert.showAndWait();
+        });
+    }
+
+    @FXML
+    private ImageView carImageView;
+    public void initialize() {
+        System.out.println("HelloController initialized");
+        // Load and set the car image
+        Image carImage = new Image(getClass().getResource("/org/example/samochodgui/pixel-art-orange-auto.png").toExternalForm());
+        System.out.println("Image width: " +
+                carImage.getWidth() + ", height: " + carImage.getHeight());
+        carImageView.setImage(carImage);
+        carImageView.setFitWidth(60); // Set appropriate
+        carImageView.setFitHeight(60);
+        carImageView.setTranslateX(0);
+        carImageView.setTranslateY(0);
+
+        mapa.setOnMouseClicked(event -> {
+            if(car==null){System.out.println("Wybierz auto"); return;};
+            double x = event.getX();
+            double y = event.getY();
+            Pozycja nowaPozycja = new Pozycja(x, y);
+            car.jedzDo(nowaPozycja);
+        });
+
+
+    }
 }

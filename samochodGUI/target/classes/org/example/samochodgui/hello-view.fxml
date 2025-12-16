@@ -228,22 +228,20 @@
 
     <!-- MAPA -->
     <center>
-        <Pane style="-fx-background-color: #9af59d;" prefWidth="300" prefHeight="300">
+        <Pane style="-fx-background-color: #9af59d;" fx:id = "mapa" prefWidth="300" prefHeight="300">
             <children>
-                <Label text="Mapa" layoutX="20" layoutY="20"/>
 
-                <ImageView fx:id="carImage"
+                <ImageView fx:id="carImageView"
                            layoutX="20"
                            layoutY="50"
                            fitWidth="60"
                            fitHeight="60"
                            preserveRatio="true">
                     <image>
-                        <Image url="@pixel-art-orange-auto.jpg" />
+                        <Image url="@pixel-art-orange-auto.png" />
                     </image>
                 </ImageView>
 
-                <Label text="Car" layoutX="20" layoutY="140"/>
             </children>
         </Pane>
 
