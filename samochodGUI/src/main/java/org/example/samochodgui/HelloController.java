@@ -21,7 +21,7 @@ import main.samochod.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class HelloController {
+public class HelloController implements Listener {
 
     //region Initialization of Buttons and TextFields
     @FXML
@@ -127,7 +127,7 @@ public class HelloController {
         if(car==null){pokazBlad("Wybierz auto"); return;};
         carSelect.getItems().remove(car);
         car = null;
-        carSelect.getSelectionModel().selectFirst();
+        carSelect.getSelectionModel().selectLast();
         System.out.println("usunieto auto");
         refresh();
     }
@@ -135,6 +135,7 @@ public class HelloController {
     public void carSelect(ActionEvent actionEvent) {
         car = carSelect.getSelectionModel().getSelectedItem();
         refresh();
+        car.addListener(this);
     }
 
     void refresh() {
@@ -167,6 +168,10 @@ public class HelloController {
             carImageView.setTranslateY(car.pozycja.y);
         });
 
+    }
+
+    public void update(){
+        refresh();
     }
 
     public void openAddCarWindow() throws IOException {

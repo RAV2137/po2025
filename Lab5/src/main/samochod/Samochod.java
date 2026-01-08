@@ -1,5 +1,8 @@
 package main.samochod;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Samochod extends Thread {
     public String nrRejestSa;
     public String modelSa;
@@ -10,6 +13,8 @@ public class Samochod extends Thread {
     public Silnik silnik;
     public Pozycja pozycja;
     public Pozycja cel;
+
+    private List<Listener> listeners = new ArrayList<Listener>();   //lista słuchaczy
 
     public void wlacz(){silnik.uruchom(); predkoscSa();}
     public void wylacz(){silnik.zatrzymaj(); predkoscSa();}
@@ -35,19 +40,48 @@ public class Samochod extends Thread {
         double deltat = 0.1;
         while (true) {
             if (cel != null) {
-                double odleglosc = Math.sqrt(Math.pow(cel.x - pozycja.x, 2) +
-                        Math.pow(cel.y - pozycja.y, 2));
-                double dx = predkoscSa * deltat * (cel.x - pozycja.x) /
-                        odleglosc;
-                double dy = predkoscSa * deltat * (cel.y - pozycja.y) /
-                        odleglosc;
-                pozycja.aktualizujPozycje(dx,dy);
+                double dxC = cel.x - pozycja.x;
+                double dyC = cel.y - pozycja.y;
+                double odleglosc = Math.sqrt(dxC * dxC + dyC * dyC);
+                //Usunięcie drgania samochodu
+                if (odleglosc <= 0.001) {
+                    pozycja.x = cel.x;
+                    pozycja.y = cel.y;
+                    cel = null;
+                    notifyListeners();
+                } else {
+                    double krok = predkoscSa * deltat;
+
+                    if (krok > odleglosc) {
+                        krok = odleglosc;
+                    }
+
+                    double dx = krok * dxC / odleglosc;
+                    double dy = krok * dyC / odleglosc;
+
+                    pozycja.aktualizujPozycje(dx, dy);
+                    notifyListeners();
+                }
             }
+
             try {
-                Thread.sleep(100); // pauza 100ms
+                Thread.sleep(100);
             } catch (InterruptedException e) {
-                return; // zakończ wątek jeśli przerwany
+                return;
             }
+        }
+
+    }
+
+    public void addListener(Listener listener) {
+        listeners.add(listener);
+    }
+    public void removeListener(Listener listener) {
+        listeners.remove(listener);
+    }
+    private void notifyListeners() {
+        for (Listener listener : listeners) {
+            listener.update();
         }
     }
 

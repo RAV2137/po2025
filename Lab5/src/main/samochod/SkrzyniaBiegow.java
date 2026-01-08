@@ -1,7 +1,7 @@
 package main.samochod;
 
 public class SkrzyniaBiegow extends Komponent{
-    public int aktualnyBieg=0;
+    public int aktualnyBieg=1;
     public int iloscBiegow;
     public double aktualnePrzelozenie;
     public Sprzeglo sprzeglo;

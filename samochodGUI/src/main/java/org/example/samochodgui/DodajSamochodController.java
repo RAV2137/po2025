@@ -55,6 +55,8 @@ public class DodajSamochodController {
         String karoserianr_rejestr = karoserianr_rejestrText.getText();
         Samochod car= new Samochod(karoseriamodel,karoserianr_rejestr, silnik, sprzeglo, skrzynia);
         mainController.addCarToList(car);
+        mainController.carSelect.getSelectionModel().selectLast();
+
 //        mainController.silnik = silnik;
 //        mainController.sprzeglo = sprzeglo;     //Przekazanie stworzonych elementów do głównego Controllera
 //        mainController.skrzynia = skrzynia;
@@ -75,6 +77,7 @@ public class DodajSamochodController {
             );
 
             skrzyniaSelect.getItems().add(skrzynia);
+            skrzyniaSelect.getSelectionModel().selectLast();
 
         } catch (NumberFormatException e) {
             mainController.pokazBlad("Cena, waga i liczba biegów muszą być liczbami");
@@ -87,6 +90,8 @@ public class DodajSamochodController {
                     parseDouble(silnikWagaText.getText()),
                     parseInt(silnikMaxObrotyText.getText()));
             silnikSelect.getItems().add(silnik);
+            silnikSelect.getSelectionModel().selectLast();
+
         } catch (NumberFormatException e) {
             mainController.pokazBlad("Cena, waga i maksymalne obroty muszą być liczbami");
         }
@@ -97,7 +102,9 @@ public class DodajSamochodController {
                 parseDouble(sprzegloCenaText.getText()),
                 parseDouble(sprzegloWagaText.getText()),
                 parseInt(sprzegloStanText.getText()));
-        sprzegloSelect.getItems().add(sprzeglo);}
+        sprzegloSelect.getItems().add(sprzeglo);
+        silnikSelect.getSelectionModel().selectLast();
+        }
         catch (NumberFormatException e) {
             mainController.pokazBlad("Cena, waga i stan muszą być liczbami");
         }
@@ -135,7 +142,7 @@ public class DodajSamochodController {
         sprzegloStanText.setText(String.valueOf(sprzeglo.stanSprzegla));
     }
 
-    HelloController mainController;
+    HelloController mainController;     //zawiera referencje do mainkontrolera
     public void setMainController(HelloController mainController) {     //IDK
         this.mainController = mainController;
 //        silnikSelect.getItems().add(mainController.silnik);

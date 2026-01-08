@@ -233,7 +233,7 @@
 
                 <ImageView fx:id="carImageView"
                            layoutX="20"
-                           layoutY="50"
+                           layoutY="1"
                            fitWidth="60"
                            fitHeight="60"
                            preserveRatio="true">
