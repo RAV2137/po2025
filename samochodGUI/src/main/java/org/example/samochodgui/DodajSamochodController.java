@@ -4,12 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import main.samochod.Samochod;
 import main.samochod.Silnik;
 import main.samochod.SkrzyniaBiegow;
 import main.samochod.Sprzeglo;
+
+import java.util.function.Function;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
@@ -103,7 +107,7 @@ public class DodajSamochodController {
                 parseDouble(sprzegloWagaText.getText()),
                 parseInt(sprzegloStanText.getText()));
         sprzegloSelect.getItems().add(sprzeglo);
-        silnikSelect.getSelectionModel().selectLast();
+        sprzegloSelect.getSelectionModel().selectLast();
         }
         catch (NumberFormatException e) {
             mainController.pokazBlad("Cena, waga i stan muszą być liczbami");
@@ -161,6 +165,47 @@ public class DodajSamochodController {
         sprzegloSelect.getItems().add(sprzeglo);
         sprzeglo = new  Sprzeglo("Clutch Masters FX400", 3000.0, 7, 100);
         sprzegloSelect.getItems().add(sprzeglo);
+
+        configureComboBox(skrzyniaSelect, SkrzyniaBiegow::getNazwa);
+        configureComboBox(silnikSelect,   Silnik::getNazwa);
+        configureComboBox(sprzegloSelect, Sprzeglo::getNazwa);
+
         //endregion
     }
+
+    private <T> void configureComboBox(
+            ComboBox<T> comboBox,
+            Function<T, String> labelProvider
+    ) {
+        StringConverter<T> converter = new StringConverter<>() {
+            @Override
+            public String toString(T item) {
+                return item == null ? "" : labelProvider.apply(item);
+            }
+
+            @Override
+            public T fromString(String string) {
+                return null;
+            }
+        };
+
+        comboBox.setConverter(converter);
+
+        comboBox.setCellFactory(cb -> new ListCell<>() {
+            @Override
+            protected void updateItem(T item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty || item == null ? null : labelProvider.apply(item));
+            }
+        });
+
+        comboBox.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(T item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty || item == null ? null : labelProvider.apply(item));
+            }
+        });
     }
+
+}

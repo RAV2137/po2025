@@ -8,14 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import main.samochod.*;
 
 import java.io.IOException;
@@ -56,7 +54,7 @@ public class HelloController implements Listener {
     public Pane mapa;
 
     //endregion
-    private Samochod car;
+    public Samochod car;
 
     @FXML
     public void onstartButton() {
@@ -205,13 +203,46 @@ public class HelloController implements Listener {
     private ImageView carImageView;
     public void initialize() {
         System.out.println("HelloController initialized");
+
+        // ===== ComboBox: wyświetlaj modelSa =====
+        StringConverter<Samochod> carConverter = new StringConverter<>() {
+            @Override
+            public String toString(Samochod s) {
+                return s == null ? "" : s.modelSa;
+            }
+
+            @Override
+            public Samochod fromString(String string) {
+                return null;
+            }
+        };
+
+        carSelect.setConverter(carConverter);
+
+        carSelect.setCellFactory(cb -> new ListCell<>() {
+            @Override
+            protected void updateItem(Samochod s, boolean empty) {
+                super.updateItem(s, empty);
+                setText(empty || s == null ? null : s.modelSa);
+            }
+        });
+
+        carSelect.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Samochod s, boolean empty) {
+                super.updateItem(s, empty);
+                setText(empty || s == null ? null : s.modelSa);
+            }
+        });
+
+
         // Load and set the car image
         Image carImage = new Image(getClass().getResource("/org/example/samochodgui/pixel-art-orange-auto.png").toExternalForm());
         System.out.println("Image width: " +
                 carImage.getWidth() + ", height: " + carImage.getHeight());
         carImageView.setImage(carImage);
         carImageView.setFitWidth(60); // Set appropriate
-        carImageView.setFitHeight(60);
+        carImageView.setFitHeight(30);
         carImageView.setTranslateX(0);
         carImageView.setTranslateY(0);
 
