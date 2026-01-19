@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns="http://javafx.com/javafx/17.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.samochodgui.HelloController"
+            prefWidth="1200" prefHeight="700">
+
+    <!-- GÓRNA BELKA -->
+    <top>
+        <HBox spacing="10" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="10" bottom="10" left="10" right="10"/>
+            </padding>
+            <children>
+                <Label text="Samochód:"/>
+                <ComboBox fx:id="carSelect" prefWidth="200" onAction="#carSelect"/>
+                <Button text="Dodaj nowy" fx:id="dodajButton" onAction="#ondodajButton" />
+                <Button text="Usuń" fx:id="usunButton" onAction="#onusunButton" />
+            </children>
+        </HBox>
+    </top>
+
+    <!-- LEWY PANEL -->
+    <left>
+        <VBox spacing="10" prefWidth="300">
+            <padding>
+                <Insets top="10" bottom="10" left="10" right="10"/>
+            </padding>
+            <children>
+
+                <!-- SAMOCHÓD -->
+                <TitledPane text="Samochód" expanded="true">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" left="10" right="10" bottom="10"/></padding>
+                            <children>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Model" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="modelSaText"/>
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Nr rejestracyjny"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="nrRejestSaText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Waga"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="wagaSaText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Prędkość" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="predkoscSaText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Button text="Włącz" fx:id="startButton" onAction="#onstartButton" />
+                                        <Button text="Wyłącz" fx:id="stopButton" onAction="#onstopButton"/>
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+
+                <!-- SKRZYNIA BIEGÓW -->
+                <TitledPane text="Skrzynia Biegów">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" left="10" right="10" bottom="10"/></padding>
+                            <children>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Nazwa"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="nazwaSkText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Cena" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="cenaSkText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Waga" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="wagaSkText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Bieg" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="biegSkText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Button text="Zwiększ bieg" fx:id="zwiekszbiegButton" onAction="#onzwiekszbiegButton" />
+                                        <Button text="Zmniejsz bieg" fx:id="zmniejszbiegButton" onAction="#onzmniejszbiegButton" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+
+                <!-- SILNIK -->
+                <TitledPane text="Silnik">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" left="10" right="10" bottom="10"/></padding>
+                            <children>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Nazwa" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="nazwaSiText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Cena"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="cenaSiText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Waga" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="wagaSiText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Obroty"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="obrotySiText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Button text="Dodaj gazu" fx:id="dodajgazuButton" onAction="#ondodajgazuButton"/>
+                                        <Button text="Ujmij gazu" fx:id="ujmijgazuButton" onAction="#onujmijgazuButton" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+
+                <!-- SPRZĘGŁO -->
+                <TitledPane text="Sprzęgło">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" left="10" right="10" bottom="10"/></padding>
+                            <children>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Nazwa" prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="nazwaSpText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Cena"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="cenaSpText"/>
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Waga"  prefWidth="120"/>
+                                        <TextField prefWidth="140" fx:id="wagaSpText" />
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Label text="Stan"  prefWidth="120"/>
+                                        <TextField prefWidth="140"  fx:id="stanSpText"/>
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="10">
+                                    <children>
+                                        <Button text="Naciśnij" fx:id="nacisnijButton" onAction="#onnacisnijButton" />
+                                        <Button text="Zwolnij" fx:id="zwolnijButton" onAction="#onzwolnijButton" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+
+            </children>
+        </VBox>
+    </left>
+
+    <!-- MAPA -->
+    <center>
+        <Pane style="-fx-background-color: #9af59d;" fx:id = "mapa" prefWidth="300" prefHeight="300">
+            <children>
+
+                <ImageView fx:id="carImageView"
+                           layoutX="20"
+                           layoutY="1"
+                           fitWidth="60"
+                           fitHeight="60"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@pixel-art-orange-auto.png" />
+                    </image>
+                </ImageView>
+
+            </children>
+        </Pane>
+
+    </center>
+
+</BorderPane>

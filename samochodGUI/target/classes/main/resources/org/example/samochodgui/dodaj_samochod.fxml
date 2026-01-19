@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10"
+      xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.samochodgui.DodajSamochodController"
+      prefWidth="850" prefHeight="250">
+
+    <!-- GÓRA -->
+    <HBox spacing="10" alignment="CENTER">
+        <ComboBox fx:id="skrzyniaSelect" promptText="Skrzynia" prefWidth="150" onAction="#onSkrzyniaSelect" />
+        <ComboBox fx:id="silnikSelect" promptText="Silnik" prefWidth="150" onAction="#onSilnikSelect"/>
+        <ComboBox fx:id="sprzegloSelect" promptText="Sprzęgło" prefWidth="150" onAction="#onSprzegloSelect" />
+        <Button fx:id="dodajButton" text="Dodaj samochód" onAction="#ondodajButton"/>
+        <Button fx:id="anulujButton" text="Anuluj" onAction="#onanulujButton"/>
+    </HBox>
+
+    <!-- DÓŁ -->
+    <HBox spacing="20" alignment="CENTER">
+        <!-- SAMOCHÓD -->
+        <VBox spacing="8" alignment="CENTER" prefWidth="220" style="-fx-border-color:black; -fx-padding:10;">
+            <Label text="Karoseria" style="-fx-font-weight:bold"/>
+            <TextField fx:id="karoseriamodelText" promptText="Model" />
+            <TextField fx:id="karoserianr_rejestrText" promptText="Numer Rejestracyjny"/>
+        </VBox>
+        <!-- SKRZYNIA -->
+        <VBox spacing="8" alignment="CENTER" prefWidth="220" style="-fx-border-color:black; -fx-padding:10;">
+            <Label text="Skrzynia" style="-fx-font-weight:bold"/>
+            <TextField fx:id="skrzyniaNazwaText" promptText="Nazwa"/>
+            <TextField fx:id="skrzyniaCenaText" promptText="Cena"/>
+            <TextField fx:id="skrzyniaWagaText" promptText="Waga"/>
+            <TextField fx:id="skrzyniaMaxBiegText" promptText="Max bieg"/>
+            <Button text="Dodaj komponent" onAction="#ondodajSkrzynieButton"/>
+        </VBox>
+
+        <!-- SILNIK -->
+        <VBox spacing="8" alignment="CENTER" prefWidth="220" style="-fx-border-color:black; -fx-padding:10;">
+            <Label text="Silnik" style="-fx-font-weight:bold"/>
+            <TextField fx:id="silnikNazwaText" promptText="Nazwa"/>
+            <TextField fx:id="silnikCenaText" promptText="Cena"/>
+            <TextField fx:id="silnikWagaText" promptText="Waga"/>
+            <TextField fx:id="silnikMaxObrotyText" promptText="Max obroty"/>
+            <Button text="Dodaj komponent" onAction="#ondodajSilnikButton"/>
+        </VBox>
+
+        <!-- SPRZĘGŁO -->
+        <VBox spacing="8" alignment="CENTER" prefWidth="220" style="-fx-border-color:black; -fx-padding:10;">
+            <Label text="Sprzęgło" style="-fx-font-weight:bold"/>
+            <TextField fx:id="sprzegloNazwaText" promptText="Nazwa"/>
+            <TextField fx:id="sprzegloCenaText" promptText="Cena"/>
+            <TextField fx:id="sprzegloWagaText" promptText="Waga"/>
+            <TextField fx:id="sprzegloStanText" promptText="Stan"/>
+            <Button text="Dodaj komponent" onAction="#ondodajSprzegloButton"/>
+        </VBox>
+
+    </HBox>
+</VBox>
