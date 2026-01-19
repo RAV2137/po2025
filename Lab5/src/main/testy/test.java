@@ -2,7 +2,7 @@ package main.testy;
 import main.samochod.*;
 
 
-public class test {
+public class    test {
     public static void main(String[] args) {
 
 //
